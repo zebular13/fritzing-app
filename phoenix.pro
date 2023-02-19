@@ -175,7 +175,7 @@ RC_FILE = fritzing.rc
 RESOURCES += phoenixresources.qrc
 
 # Disable this if you have (and want) libgit2 dynamically
-LIBGIT_STATIC = true
+LIBGIT_STATIC = false
 include(pri/libgit2detect.pri)
 
 include(pri/boostdetect.pri)
