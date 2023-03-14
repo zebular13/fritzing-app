@@ -28,6 +28,7 @@ along with Fritzing.  If not, see <http://www.gnu.org/licenses/>.
 #include "../utils/textutils.h"
 #include "../installedfonts.h"
 #include "../fsvgrenderer.h"
+#include "qdebug.h"
 
 #include <QGraphicsScene>
 #include <QMenu>
@@ -154,7 +155,7 @@ void PartLabel::showLabel(bool showIt, ViewLayer * viewLayer) {
 		QRectF obr = m_owner->boundingRect();
 		QRectF tbr = QGraphicsSvgItem::boundingRect();
 		QPointF initial = (flipped)
-		                  ? m_owner->pos() + QPointF(-tbr.width(), -tbr.height())
+                          ? m_owner->pos() + QPointF(-tbr.width(), -tbr.height())
 		                  : m_owner->pos() + QPointF(obr.width(), -tbr.height());
 		this->setPos(initial);
 		m_offset = initial - m_owner->pos();
@@ -260,6 +261,7 @@ void PartLabel::displayTextsIf() {
 
 void PartLabel::displayTexts() {
 	QStringList texts;
+    QStringList brailleTexts;
 
 	foreach (QString key, m_displayKeys) {
 		QString t;
@@ -273,6 +275,31 @@ void PartLabel::displayTexts() {
 	}
 
 	QString text = texts.join("\n");
+    qDebug()<<"Debug output";
+    qDebug()<<text; // String value correct;
+    //QString const textTemp(text.constData());
+    //QString textTemp(text.constData());
+    //std::wstring textTemp = text.toStdWString();
+    QByteArray const textTemp = m_text.toLocal8Bit();
+    qDebug()<<textTemp;
+    //QChar textchar = QString(text).toStdString.c_str()
+    //QChar c = text.at(0).toAscii();
+    const char *myMailboxName = text.toLatin1().data();
+    qDebug()<<*myMailboxName;
+    qDebug()<<myMailboxName;
+    char* mychar = strdup(qPrintable(text));
+    qDebug()<<mychar;
+    //char* mychrStr = text.toStdString().c_str();
+    //char* mychar_ascii = strdup(text.ascii());
+
+
+//    bool ok;
+//    long hex = m_text.toInt(&ok, 16);     // hex == 255, ok == true
+//    long dec = m_text.toLong(&ok, 10);     // dec == 0, ok == false
+//    //uint dec = text.toUInt(&ok, 10);
+//    qDebug()<<dec;
+//    //uint hex = text.toUInt(&ok, 16);     // hex == 255, ok == true
+//    qDebug()<<hex;
 
 	if (text.length() == 0) {
 		text = "?";					// make sure there's something visible
@@ -833,7 +860,7 @@ QString PartLabel::makeSvgAux(bool blackOnly, double dpi, double printerScale, d
 	              .arg(m_font.pointSizeF() * dpi / 72)
 	              .arg(mapToSVGStyle(m_font.style()))
 	              .arg(mapToSVGWeight(m_font.weight()))
-	              .arg(blackOnly ? "#000000" : m_color.name())
+	              .arg(blackOnly ? "#000000" : "#532e85") //"m_color.name()")
 	              .arg(InstalledFonts::InstalledFontsNameMapper.value(m_font.family()))
 	              .arg(ViewLayer::viewLayerXmlNameFromID(m_viewLayerID)
 	                  );

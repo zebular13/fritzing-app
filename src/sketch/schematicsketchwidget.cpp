@@ -37,7 +37,7 @@ QSizeF SchematicSketchWidget::m_jumperItemSize = QSizeF(0, 0);
 
 static QString SchematicTraceColor = "black";
 static const double TraceHoverStrokeFactor = 3;
-static const double TraceWidthMils = 9.7222;
+static const double TraceWidthMils = 11.7222;
 static const double TraceWidthMilsOld = 33.3333;
 
 bool sameGround(ConnectorItem * c1, ConnectorItem * c2)
@@ -127,7 +127,7 @@ void SchematicSketchWidget::getBendpointWidths(Wire * wire, double width, double
 {
 	Q_UNUSED(wire);
 	bendpointWidth = -width - 1;
-	bendpoint2Width = width + ((m_oldSchematic) ? 3 : 1);
+	bendpoint2Width = width + ((m_oldSchematic) ? 3 : 3);
 	negativeOffsetRect = true;
 }
 
@@ -406,7 +406,7 @@ QString SchematicSketchWidget::makeCircleSVG(QPointF p, double r, QPointF offset
 	double rr = r * dpi / printerScale;
 
 	QString stroke = "black";
-	return QString("<circle  fill=\"black\" cx=\"%1\" cy=\"%2\" r=\"%3\" stroke-width=\"0\" stroke=\"none\" />")
+    return QString("<circle  fill=\"white\" r=\"%10\" stroke-width=\"1\" stroke=\"black\" cx=\"%1\" cy=\"%2\" />")
 	       .arg(cx)
 	       .arg(cy)
 	       .arg(rr);
