@@ -7,7 +7,7 @@
 			<connector name="3v3" />
 			<connector name="+5v" />
 		</color>
-		<color name="black" ratsnest="#000000"  wire="#404040" shadow="#000000" >
+		<color name="black" ratsnest="#000000"  wire="#000000" shadow="#000000" >
 			<connector name="gnd" />
 			<connector name="ground" />
 		</color>
@@ -35,7 +35,7 @@
 			<connector name="3v3" />
 			<connector name="+5v" />
 		</color>
-		<color name="black" ratsnest="#000000"  wire="#404040" shadow="#404040">
+		<color name="black" ratsnest="#000000"  wire="#000000" shadow="#000000">
 			<connector name="gnd" />
 			<connector name="ground" />
 		</color>

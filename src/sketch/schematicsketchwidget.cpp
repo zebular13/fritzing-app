@@ -137,7 +137,7 @@ void SchematicSketchWidget::getLabelFont(QFont & font, QColor & color, ItemBase 
 	font.setBold(false);
 	font.setItalic(false);
 	color.setAlpha(255);
-	color.setRgb(0);
+	color.setRgb(532e85);
 }
 
 void SchematicSketchWidget::setNewPartVisible(ItemBase * itemBase) {
